@@ -2,5 +2,5 @@
   azure_rm_deployment:
     state: present
     resource_group_name: dev-ops-cle
-    template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
+    template_link: 'https://github.com/naidu-kjml/ansible-azuredevops/blob/master/template.json'
     parameters_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.parameters.json'
