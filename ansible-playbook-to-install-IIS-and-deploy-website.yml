@@ -1,0 +1,34 @@
+---
+- name: Install IIS
+  hosts: windows
+  gather_facts: true
+  tasks:  
+   - win_feature:
+       source: C:\Temp\iso\sources\sxs
+       state: present
+   - win_feature:
+       name: "web-server"
+       state: present
+       restart: yes
+       include_sub_features: yes
+       include_management_tools: yes
+     register: win_feature
+   - name: Reboot if installing Web-Server feature requires it
+     win_reboot:
+     when: win_feature.reboot_required
+   - win_iis_webapplication:
+       name: api
+       site: acme
+       state: present
+       physical_path: C:\apps\acme\api
+   - name: Acme IIS site
+     win_iis_website:
+       name: "Acme"
+       state: started
+       port: 80
+       ip: 127.0.0.1
+       hostname: acme.local
+       application_pool: "acme"
+       physical_path: c:\sites\acme
+       parameters: logfile.directory:c:\sites\logs
+     register: website
