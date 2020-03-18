@@ -1,6 +1,8 @@
 - name: Create Azure Deploy
   azure_rm_deployment:
     state: present
-    resource_group_name: dev-ops-cle
+    resource_group_name: myResourceGroup
+    name: myDeployment
+    location: West Europe
     template_link: 'https://github.com/naidu-kjml/ansible-azuredevops/blob/master/template.json'
     parameters_link: 'https://github.com/naidu-kjml/ansible-azuredevops/blob/master/parameters.json'
